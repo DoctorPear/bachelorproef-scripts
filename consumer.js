@@ -3,7 +3,7 @@ const fs = require('fs');
 var host = process.argv[1];
 var port = 5671;
 var sent = 0, received=0;
-var total = 40000000
+var total = 500000
 var obj = {"records": []}
 
 var container = require('rhea');

@@ -14,7 +14,7 @@ ssl_options = pika.SSLOptions(context, url)
 params = pika.ConnectionParameters(credentials=creds, host=url, ssl_options=ssl_options)
 
 msg_size = 1000
-amount_of_messages = 40000000
+amount_of_messages = 500000
 
 producer_stop = threading.Event()
 consumer_stop = threading.Event()

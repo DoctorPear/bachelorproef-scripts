@@ -8,7 +8,7 @@ url = sys.argv[1]
 client = pulsar.Client('pulsar://' + url + ':6650')
 
 msg_size = 1000
-amount_of_messages = 40000000
+amount_of_messages = 500000
 
 producer_stop = threading.Event()
 consumer_stop = threading.Event()
