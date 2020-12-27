@@ -7,7 +7,7 @@ import os
 
 json_object_file = {"records": []}
 
-url = sys.argv[0]
+url = sys.argv[1]
 creds = pika.PlainCredentials("peerlro", "peerlro123456789")
 context = ssl.create_default_context()
 ssl_options = pika.SSLOptions(context, url)

@@ -1,6 +1,6 @@
 
 const fs = require('fs');
-var host = process.argv[0];
+var host = process.argv[1];
 var port = 5671;
 var sent = 0, received=0;
 var total = 40000000

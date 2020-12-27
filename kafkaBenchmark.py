@@ -14,7 +14,7 @@ class Producer(threading.Thread):
     big_msg = b'1' * msg_size
 
     def run(self):
-        producer = KafkaProducer(bootstrap_servers=sys.argv[0]+':9092', batch_size=1000)
+        producer = KafkaProducer(bootstrap_servers=sys.argv[1]+':9092', batch_size=1000)
         self.sent = 0
 
         while not producer_stop.is_set():

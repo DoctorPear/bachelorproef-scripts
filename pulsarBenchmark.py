@@ -3,7 +3,7 @@ import threading, logging, time, sys, json, os
 
 json_object_file = {"records": []}
 
-url = sys.argv[0]
+url = sys.argv[1]
 
 client = pulsar.Client('pulsar://' + url + ':6650')
 
