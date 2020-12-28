@@ -14,7 +14,7 @@ class Producer(threading.Thread):
     big_msg = b'1' * msg_size
 
     def run(self):
-        producer = KafkaProducer(bootstrap_servers=sys.argv[1]+':9092', batch_size=1000)
+        producer = KafkaProducer(bootstrap_servers=sys.argv[1]+':9092', batch_size=1000, value_serializer=lambda m: json.dumps(m).encode('ascii'))
         self.sent = 0
 
         while not producer_stop.is_set():
@@ -28,11 +28,11 @@ class Producer(threading.Thread):
 class Consumer(threading.Thread):
 
     def run(self):
-        consumer = KafkaConsumer(bootstrap_servers=sys.argv[1]+':9092', auto_offset_reset='earliest', enable_auto_commit=True, group_id='my-group')
+        consumer = KafkaConsumer(bootstrap_servers=sys.argv[1]+':9092', auto_offset_reset='earliest', enable_auto_commit=True, group_id='my-group', value_deserializer=lambda m: json.loads(m.decode('ascii')))
         consumer.subscribe(['my-topic'])
 
         for message in consumer:
-            result = json.loads(message)
+            result = message
             adobj = {"sendtime": result['sendtime'], "receivetime": int(round(time.time() * 1000))}
             json_object_file["records"].append(adobj)
 
