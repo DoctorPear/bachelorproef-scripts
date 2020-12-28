@@ -33,7 +33,8 @@ class Consumer(threading.Thread):
 
         for message in consumer:
             result = message
-            adobj = {"sendtime": result['sendtime'], "receivetime": int(round(time.time() * 1000))}
+            print(result)
+            adobj = {"sendtime": result[0], "receivetime": int(round(time.time() * 1000))}
             json_object_file["records"].append(adobj)
 
             if consumer_stop.is_set():
