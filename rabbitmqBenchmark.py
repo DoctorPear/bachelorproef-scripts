@@ -76,7 +76,7 @@ def main():
     for t in threads:
         t.start()
 
-    time.sleep(1)
+    time.sleep(20)
     going_on = True
     while going_on:
         if threads[0].sent >= amount_of_messages:
