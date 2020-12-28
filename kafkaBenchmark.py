@@ -5,7 +5,7 @@ import threading, logging, time, json, sys, os
 from kafka import KafkaConsumer, KafkaProducer
 
 msg_size = 1000
-amount_of_messages = 500000
+amount_of_messages = sys.argv[2]
 
 producer_stop = threading.Event()
 consumer_stop = threading.Event()
@@ -36,7 +36,7 @@ class Consumer(threading.Thread):
         for message in consumer:
             result = message
             print(result)
-            adobj = {"sendtime": result[6][0], "receivetime": int(round(time.time() * 1000))}
+            adobj = {"sendtime": json.loads(result[6])['sendtime'], "receivetime": int(round(time.time() * 1000))}
             json_object_file["records"].append(adobj)
 
             if consumer_stop.is_set():
