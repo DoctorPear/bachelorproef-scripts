@@ -32,14 +32,16 @@ class Consumer(threading.Thread):
     def run(self):
         consumer = KafkaConsumer(bootstrap_servers=sys.argv[1]+':9092', auto_offset_reset='earliest', enable_auto_commit=True, group_id='my-group', value_deserializer=lambda m: json.loads(m.decode('ascii')))
         consumer.subscribe(['my-topic'])
+        self.received = 0
 
         for message in consumer:
             result = message
             print(result)
             adobj = {"sendtime": json.loads(result[6])['sendtime'], "receivetime": int(round(time.time() * 1000))}
             json_object_file["records"].append(adobj)
+            self.received += 1
 
-            if consumer_stop.is_set():
+            if consumer_stop.is_set() or self.received == amount_of_messages:
                 break
 
         consumer.close()
