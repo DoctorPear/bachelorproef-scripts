@@ -5,7 +5,7 @@ import threading, logging, time, json, sys, os
 from kafka import KafkaConsumer, KafkaProducer
 
 msg_size = 1000
-amount_of_messages = sys.argv[2]
+amount_of_messages = 10
 
 producer_stop = threading.Event()
 consumer_stop = threading.Event()
