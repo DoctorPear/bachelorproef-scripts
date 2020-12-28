@@ -1,6 +1,6 @@
 
 const fs = require('fs');
-var host = "b-4bb54ebb-2de7-47a6-bd9e-0cdcb100d709-1.mq.eu-west-1.amazonaws.com";
+var host = "b-fff7c675-7d60-4cb8-830f-7ecab3f0f885-1.mq.eu-west-1.amazonaws.com";
 var port = 5671;
 var sent = 0, received=0;
 var total = 2048;
