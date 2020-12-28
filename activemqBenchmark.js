@@ -3,7 +3,7 @@ const fs = require('fs');
 var host = "b-4bb54ebb-2de7-47a6-bd9e-0cdcb100d709-1.mq.eu-west-1.amazonaws.com";
 var port = 5671;
 var sent = 0, received=0;
-var total = 1000
+var total = 2048;
 var obj = {"records": []}
 
 var container = require('rhea');
