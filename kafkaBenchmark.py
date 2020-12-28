@@ -28,7 +28,7 @@ class Producer(threading.Thread):
 class Consumer(threading.Thread):
 
     def run(self):
-        consumer = KafkaConsumer(bootstrap_servers=sys.argv[0]+':9092')
+        consumer = KafkaConsumer(bootstrap_servers=sys.argv[1]+':9092')
         consumer.subscribe(['my-topic'])
 
         for message in consumer:
