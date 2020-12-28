@@ -14,7 +14,7 @@ class Producer(threading.Thread):
     big_msg = b'1' * msg_size
 
     def run(self):
-        producer = KafkaProducer(bootstrap_servers=sys.argv[1]+':9092', batch_size=1000)
+        producer = KafkaProducer(bootstrap_servers=sys.argv[1]+':9092', batch_size=1000, value_serializer=lambda x: dumps(x).encode('utf-8'))
         self.sent = 0
 
         while not producer_stop.is_set():
@@ -28,7 +28,7 @@ class Producer(threading.Thread):
 class Consumer(threading.Thread):
 
     def run(self):
-        consumer = KafkaConsumer(bootstrap_servers=sys.argv[1]+':9092')
+        consumer = KafkaConsumer(bootstrap_servers=sys.argv[1]+':9092', auto_offset_reset='earliest', enable_auto_commit=True, group_id='my-group', value_serializer=lambda x: loads(x.decode('utf-8')))
         consumer.subscribe(['my-topic'])
 
         for message in consumer:
