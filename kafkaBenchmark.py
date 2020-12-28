@@ -10,7 +10,7 @@ amount_of_messages = 500000
 producer_stop = threading.Event()
 consumer_stop = threading.Event()
 
-json_object_file = {}
+json_object_file = {"records": []}
 
 class Producer(threading.Thread):
     big_msg = b'1' * msg_size
