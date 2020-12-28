@@ -59,7 +59,8 @@ def main():
     going_on = True
     while going_on:
         if threads[0].sent >= amount_of_messages:
-            time.sleep(120)
+            going_on = False
+            time.sleep(10)
             producer_stop.set()
             consumer_stop.set()
             print('Messages sent: %d' % threads[0].sent)
